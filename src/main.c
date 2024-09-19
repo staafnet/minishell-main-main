@@ -6,7 +6,7 @@
 /*   By: rgrochow <staafnet@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 00:29:06 by rgrochow          #+#    #+#             */
-/*   Updated: 2024/09/20 01:17:02 by rgrochow         ###   ########.fr       */
+/*   Updated: 2024/09/20 01:52:23 by rgrochow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ static void	check_args(int argc, char **argv)
 	}
 }
 
-void	show_status(t_shell *shell)
-{
-	if (shell->exit_status == 0)
-		printf("\033[42m" "  " "\033[0m");
-	else
-		printf("\033[41m" "  " "\033[0m");
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
@@ -45,7 +37,6 @@ int	main(int argc, char **argv, char **envp)
 		init_shell(&shell);
 		signal_handlers();
 		shell.prompt = build_prompt();
-		show_status(&shell);
 		shell.input = readline(shell.prompt);
 		signal_handlers_interactive();
 		free(shell.prompt);
